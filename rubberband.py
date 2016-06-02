@@ -10,7 +10,7 @@ index = '*'
 
 
 class RubberBand(cmd.Cmd):
-    prompt = Colours.B + 'rubberband: ' + Colours.N
+    prompt = Colours.B + 'rubberband >> ' + Colours.N
     intro = Colours.O + "ElasticSearch Simple Search Engine" + Colours.N
 
     def do_search(self, line):
@@ -32,6 +32,10 @@ class RubberBand(cmd.Cmd):
         global index
         index = eindex
         print Colours.G + '[-] Index set to: {0}'.format(index) + Colours.N
+
+    def do_exit(self, line):
+        print Colours.R + '[!] Exiting...' + Colours.N
+        return True
 
 if __name__ == '__main__':
     RubberBand().cmdloop()
