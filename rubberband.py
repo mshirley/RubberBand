@@ -20,6 +20,8 @@ class RubberBand(cmd.Cmd):
             es = elasticsearch.Elasticsearch(conf.get('elastic', 'server'))
             results = es.search(index=index, q='{0}'.format(line))
             data = results['hits']
+            print Colours.B + '[-] Number of hits: {0}'.format(data['total']) + Colours.N
+            print Colours.B + '[-] Search Query: {0}'.format(line) + Colours.N
             if data['total'] > 0:
                 for d in data['hits']:
                     print json.dumps(d['_source'], sort_keys=True, indent=4)
