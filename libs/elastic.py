@@ -20,7 +20,7 @@ def searchelastic(index, line):
     try:
         conf = ConfigParser.ConfigParser()
         conf.read("rubberband.conf")
-        size = countelastic(index)
+        size = countelastic(index, line)
         es = elasticsearch.Elasticsearch(conf.get('elastic', 'server'))
         results = es.search(index=index, size=size, q='{0}'.format(line))
         data = results['hits']
