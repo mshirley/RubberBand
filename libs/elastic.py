@@ -4,12 +4,12 @@ import ConfigParser
 import elasticsearch
 
 
-def countelastic(index):
+def countelastic(index, query):
     try:
         conf = ConfigParser.ConfigParser()
         conf.read("rubberband.conf")
         es = elasticsearch.Elasticsearch(conf.get('elastic', 'server'))
-        results = es.search(index=index, q='*')
+        results = es.search(index=index, q='{0}'.format(query))
         data = results['hits']
         return data['total']
     except Exception as e:
